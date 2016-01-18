@@ -14,7 +14,7 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-        <SplitView DisplayMode="Overlay"  IsPaneOpen="True" x:Name="RootSplitView" >
+        <SplitView DisplayMode="Overlay" IsPaneOpen="True" x:Name="RootSplitView" >
             <SplitView.Pane>
                 <ListView Margin="0,40,0,0">
                     <ListView.Items>
