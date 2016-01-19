@@ -9,21 +9,24 @@
             app.initialize();
 
             $('#get-data-from-selection').click(getDataFromSelection);
+            $('#set-data').click(setData);
         });
     };
 
     // Reads data from current document selection and displays a notification
     function getDataFromSelection() {
-        Office.context.document.setSelectedDataAsync("sample data");
+        Office.context.document.getSelectedDataAsync(Office.CoercionType.Text,
+            function (result) {
+                if (result.status === Office.AsyncResultStatus.Succeeded) {
+                    app.showNotification('The selected text is:', '"' + result.value + '"');
+                } else {
+                    app.showNotification('Error:', result.error.message);
+                }
+            }
+        );
+    }
 
-        //Office.context.document.getSelectedDataAsync(Office.CoercionType.Text,
-        //    function (result) {
-        //        if (result.status === Office.AsyncResultStatus.Succeeded) {
-        //            app.showNotification('The selected text is:', '"' + result.value + '"');
-        //        } else {
-        //            app.showNotification('Error:', result.error.message);
-        //        }
-        //    }
-        //);
+    function setData() {
+        Office.context.document.setSelectedDataAsync("Hello from Office App");
     }
 })();
